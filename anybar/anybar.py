@@ -14,7 +14,7 @@ class AnyBar():
                                     socket.SOCK_DGRAM)
 
     def change(self, color, text=None):
-        if color not in colors:
+        if color not in colors and not color.startswith('#'):
             raise ValueError('Color is not valid. It must be one of the '
                              'following: {}'.format(', '.join(colors)))
 
@@ -29,13 +29,11 @@ class AnyBar():
             self.socket.sendto(message, (self.address, self.port))
 
 
-
 if __name__ == '__main__':
     import argparse
 
     parser = argparse.ArgumentParser(description='Change color of AnyBar')
-    parser.add_argument('color', choices=colors,
-                        help='The color you want to change to.')
+    parser.add_argument('color', help='The color you want to change to.')
     parser.add_argument('port', type=int, nargs='?', default=1738,
                         help='The port of the AnyBar instance '
                              '(default: 1738).')

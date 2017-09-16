@@ -20,6 +20,7 @@ change('purple')
 change('black')
 change('question')
 change('exclamation')
+change('#FF0000 This is a test')
 
 try:
     change('fdafsd')
